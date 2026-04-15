@@ -5,10 +5,21 @@ export const catchers = [
     phone: "0490415734",
     status: "24hr Emergency",
     postcodes: ["3373", "0001"],
+    positiveReviews: 11+0,
+    negativeReviews: 3,
+  },
+   {
+    id: "7",
+    name: "fake 2",
+    phone: "0490415734",
+    status: "24hr Emergency",
+    postcodes: ["3373", "0001"],
+    positiveReviews: 0,
+    negativeReviews: 10000,
   },
 
   {
-    id: "#",
+    id: "2",
     name: "For Goodness Snakes",
     phone: "0400457868",
     status: "24/7 Emergency",
@@ -19,7 +30,9 @@ export const catchers = [
        "3135", "3136", "3137", "3802", "3804", "3805", 
        "3806", "3808", "3177", "3175", "3057", "3095", "3113"],
        facebook: "https://www.facebook.com/profile.php?id=61569975639136",
-},
+        positiveReviews: 11+0,
+        negativeReviews: 0,
+      },
   {
     id: "3",
     name: "Hodgsons Snakes - Rescue and Removal",
@@ -39,5 +52,48 @@ export const catchers = [
     
     website: "https://www.hodgsonssnakes.com.au/home",
     facebook: "https://www.facebook.com/HodgsonsSnakes",
+
+    positiveReviews: 70+34,
+    negativeReviews: 0,
+  },
+
+  {
+    id: "4",
+    name: "Central Victorian Snake Removal",
+    phone: "0419877339",
+    status: "Open 7:30am - 7:30pm Weekdays & 8:30am - 7:30pm weekends",
+    postcodes: ["3064", "3099", "3432", "3433", "3435", "3521",
+       "3522", "3523", "3607", "3608", "3658", "3659", "3660", 
+         "3715", "3117", "3718", "3719", "3751", "3753", "3754",
+          "3755", "3756", "3757", "3758", "3761", "3762", "3763",
+           "3764", "3662", "3663", "3664", "3665", "3666", "3711", "3714"],
+    website: "https://sites.google.com/view/cvsnakeremoval/home",
+    facebook: "https://www.facebook.com/share/18PwogRR1t/",
+    positiveReviews: 5+4,
+    negativeReviews: 0,
+  },
+  {
+    id: "5",
+    name: "Newcastle Snake Control",
+    phone: "0404939896",
+    status: "24hr Emergency",
+    postcodes: ["2286", "0001"],
+    facebook: "http://www.facebook.com.au/snakecatcherbronte",
+    positiveReviews: 26+0,
+    negativeReviews: 0,
+  },
+
+
+  {
+
+    id: "6",
+
+    name: "Wild Woofers snake catching, pet sitting and dog, walking",
+    phone: "0477997361",
+    status: "24/7 Emergency", 
+    postcodes: ["2795", "2787", "2790", "2800",  "2850", "2848", "2849"],
+    facebook: "https://www.facebook.com/share/17qZode5JH/?mibextid=wwXIfr",
+    positiveReviews: 0+30,
+    negativeReviews: 0,
   }
 ];

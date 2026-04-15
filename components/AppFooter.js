@@ -19,10 +19,12 @@ export default function AppFooter() {
 
 const styles = StyleSheet.create({
   footer: {
-    marginTop: 20,
+    marginTop: 3,
     paddingVertical: 12,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
+    borderBottomWidth: 1,
+borderBottomColor: "#ddd",
     backgroundColor: "#fff",
     flexDirection: "row",
     justifyContent: "center",
