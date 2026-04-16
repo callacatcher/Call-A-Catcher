@@ -27,18 +27,18 @@
       "package": "com.callacatcher.callacatcher"
     },
 
-    "web": {
-      "favicon": "./assets/icon.png",
-      "name": "Call a Catcher",
-      "shortName": "Catchers",
-      "display": "standalone",
-      "backgroundColor": "#ffffff",
-      "themeColor": "#000000",
-      "bundler": "metro",
-      "meta": {
-        "google-adsense-account": "ca-pub-3658953223794524"
-      }
-    },
+   "web": {
+  "favicon": "./assets/icon.png",
+  "name": "Call a Catcher",
+  "shortName": "Catchers",
+  "display": "standalone",
+  "backgroundColor": "#ffffff",
+  "themeColor": "#000000",
+  "bundler": "metro",
+  "meta": {
+    "google-adsense-account": "ca-pub-3658953223794524"
+  }
+},
 
     "extra": {
       "eas": {
