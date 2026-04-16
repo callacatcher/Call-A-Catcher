@@ -2,7 +2,7 @@ export const CATCHERS_DATA = {
   version: "435",
   data: [
     {
-      id: "1",
+      id: "",
       name: "fake 1",
       phone: "0490415734",
       status: "24hr Emergency",
@@ -11,7 +11,7 @@ export const CATCHERS_DATA = {
       negativeReviews: 3,
     },
     {
-      id: "2",
+      id: "",
       name: "fake 2",
       phone: "0490415734",
       status: "24hr Emergency",
