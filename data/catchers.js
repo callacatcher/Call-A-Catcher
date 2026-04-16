@@ -1,24 +1,7 @@
 export const CATCHERS_DATA = {
   version: "435",
   data: [
-    {
-      id: "",
-      name: "fake 1",
-      phone: "0490415734",
-      status: "24hr Emergency",
-      postcodes: ["3373", "0001"],
-      positiveReviews: 11+0,
-      negativeReviews: 3,
-    },
-    {
-      id: "",
-      name: "fake 2",
-      phone: "0490415734",
-      status: "24hr Emergency",
-      postcodes: ["3373", "0001"],
-      positiveReviews: 0,
-      negativeReviews: 10000,
-    },
+    
     {
       id: "3",
       name: "For Goodness Snakes",
