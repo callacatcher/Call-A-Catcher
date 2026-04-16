@@ -99,10 +99,7 @@ export default function MainScreen({
 
         <TouchableOpacity
           style={styles.gpsButton}
-          onPress={() => {
-  alert("GPS BUTTON WORKS");
-  useMyLocation();
-}}
+          onPress={useMyLocation}
         >
           <Text style={styles.gpsText}>📍</Text>
         </TouchableOpacity>
