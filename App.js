@@ -38,8 +38,6 @@ const PLAY_STORE_LINK = "";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
-  const CACHE_KEY = "catchers_cache";
-  const DATA_VERSION = CATCHERS_DATA.version;
   const initialCatchers = CATCHERS_DATA.data;
   const [postcode, setPostcode] = useState("");
   const [results, setResults] = useState([]);
@@ -87,56 +85,15 @@ export default function App() {
 };
 
 useEffect(() => {
-  const loadCache = async () => {
-
-    if (!isWeb) {
-  await AsyncStorage.removeItem(CACHE_KEY);
-}
-
-    try {
-      const cached = await AsyncStorage.getItem(CACHE_KEY);
-
-     if (cached) {
-  const parsed = JSON.parse(cached);
-  
-
-  // version check
-  if (parsed.version === DATA_VERSION) {
-    setCatchers(parsed.data);
-  } else {
-    // outdated cache → reset
-    setCatchers(initialCatchers);
-
-    await AsyncStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify({
-        version: DATA_VERSION,
-        data: initialCatchers
-      })
-    );
-  }
-
-} else {
-  setCatchers(initialCatchers);
-
-  await AsyncStorage.setItem(
-    CACHE_KEY,
-    JSON.stringify({
-      version: DATA_VERSION,
-      data: initialCatchers
-    })
-  );
-}
-    } catch (e) {
-      console.log("Cache load failed", e);
-      setCatchers(initialCatchers);
-      } finally {
-      setDataReady(true); 
-    }
+  const loadCatchers = async () => {
+    setCatchers(CATCHERS_DATA.data);
+    setDataReady(true);
   };
 
-  loadCache();
+  loadCatchers();
 }, []);
+  
+
 
   const withLoading = async (fn) => {
     try {
