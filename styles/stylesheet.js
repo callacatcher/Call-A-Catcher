@@ -12,14 +12,14 @@ export const stylesheet = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 40,
     backgroundColor: "#fff",
   },
 
   topBar: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 0,
   },
 
   bottomSection: {
@@ -39,7 +39,7 @@ export const stylesheet = StyleSheet.create({
 
   subheader: {
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 5,
     color: "#555",
   },
 
@@ -258,7 +258,7 @@ export const stylesheet = StyleSheet.create({
     width: "100%",
     height: 120,
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: 0,
   },
 
   /* =========================

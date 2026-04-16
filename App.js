@@ -278,13 +278,15 @@ else {
       let location = await Location.getCurrentPositionAsync({});
 
       const { latitude, longitude } = location.coords;
+      console.log("COORDS:", latitude, longitude);
 
       const geo = await Location.reverseGeocodeAsync({
         latitude,
         longitude,
       });
 
-      const detectedPostcode = geo?.[0]?.postalCode;
+      console.log("GEO RESULT:", geo);
+const detectedPostcode = geo?.[0];
 
       if (!detectedPostcode) {
         setError("GPS may not be accurate, try postcode search");
