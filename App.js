@@ -280,13 +280,13 @@ else {
       const { latitude, longitude } = location.coords;
       console.log("COORDS:", latitude, longitude);
 
-      const geo = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude,
-      });
+      const response = await fetch(
+  `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+);
 
-      console.log("GEO RESULT:", geo);
-const detectedPostcode = geo?.[0];
+const data = await response.json();
+
+const detectedPostcode = data?.address?.postcode;
 
       if (!detectedPostcode) {
         setError("GPS may not be accurate, try postcode search");
