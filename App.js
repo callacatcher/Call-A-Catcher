@@ -27,21 +27,24 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import WebAdBanner from "./components/WebAdBanner";
 import ScreenFooter from "./components/ScreenFooter";
 import { stylesheet as styles } from "./styles/stylesheet";
-import FirstAidScreen from "./screens/FirstAidScreen";
-import SignupScreen from "./screens/SignupScreen";
-import MainScreen from "./screens/MainScreen";
-
+import FirstAidScreen from "./Sheets/FirstAidScreen";
+import SignupScreen from "./Sheets/SignupScreen";
+import MainScreen from "./Sheets/MainScreen";
+import { CATCHERS_DATA } from "./data/catchers";
+console.log("INITIAL CATCHERS:", initialCatchers);
 
 const APP_STORE_LINK = "";
 const PLAY_STORE_LINK = "";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
-  
+  const CACHE_KEY = "catchers_cache";
+  const DATA_VERSION = CATCHERS_DATA.version;
+  const initialCatchers = CATCHERS_DATA.data;
   const [postcode, setPostcode] = useState("");
   const [results, setResults] = useState([]);
   const [nearbyResults, setNearbyResults] = useState([]);
-  const [catchers] = useState(initialCatchers);
+  const [catchers, setCatchers] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -49,7 +52,10 @@ export default function App() {
   const [showNotice, setShowNotice] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [pinned, setPinned] = useState([]);
+  const [dataReady, setDataReady] = useState(false);
   const isWeb = Platform.OS === "web";
+  
+  
 
   const resetHome = () => {
   setResults([]);
@@ -59,6 +65,55 @@ export default function App() {
   setHasSearched(false);
   setPostcode("");
 };
+
+useEffect(() => {
+  const loadCache = async () => {
+
+    await AsyncStorage.removeItem(CACHE_KEY);
+
+    try {
+      const cached = await AsyncStorage.getItem(CACHE_KEY);
+
+     if (cached) {
+  const parsed = JSON.parse(cached);
+
+  // version check
+  if (parsed.version === DATA_VERSION) {
+    setCatchers(parsed.data);
+  } else {
+    // outdated cache → reset
+    setCatchers(initialCatchers);
+
+    await AsyncStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        version: DATA_VERSION,
+        data: initialCatchers
+      })
+    );
+  }
+
+} else {
+  setCatchers(initialCatchers);
+
+  await AsyncStorage.setItem(
+    CACHE_KEY,
+    JSON.stringify({
+      version: DATA_VERSION,
+      data: initialCatchers
+    })
+  );
+}
+    } catch (e) {
+      console.log("Cache load failed", e);
+      setCatchers(initialCatchers);
+      } finally {
+      setDataReady(true); 
+    }
+  };
+
+  loadCache();
+}, []);
 
   const withLoading = async (fn) => {
     try {
@@ -71,12 +126,36 @@ export default function App() {
 
   const priorityIds = ["3"];
 
- const displayData =
-  showAll
-    ? catchers
-    : hasSearched
-    ? results
-    : catchers.filter((c) => pinned.includes(String(c.id)));
+const searchActive = hasSearched && results.length > 0;
+
+const baseList = searchActive ? results : catchers;
+
+// pinned only matters when NOT searching
+const pinnedOnly = catchers.filter((c) =>
+  pinned.includes(String(c.id))
+);
+
+// pinned matches inside search results only
+const pinnedInSearch = searchActive
+  ? baseList.filter((c) => pinned.includes(String(c.id)))
+  : [];
+
+// unpinned results
+const unpinned = searchActive
+  ? baseList.filter((c) => !pinned.includes(String(c.id)))
+  : showAll
+  ? catchers.filter((c) => !pinned.includes(String(c.id)))
+  : [];
+
+const displayData = searchActive
+  ? [...pinnedInSearch, ...unpinned]
+  : showAll
+  ? catchers
+  : pinnedOnly;
+
+console.log("CATCHERS:", catchers.length);
+console.log("DISPLAY DATA:", displayData.length);
+
 
   useEffect(() => {
     const loadPinned = async () => {
@@ -123,10 +202,12 @@ export default function App() {
   }, []);
 
   const performSearch = async (value) => {
+    console.log("👉 SEARCH INPUT (RAW):", value);
     setError("");
     setWarning("");
 
     const clean = value.trim();
+    console.log("👉 CLEAN INPUT:", clean);
 
     if (!clean || clean.length < 3) {
       setError("Please enter a valid postcode");
@@ -136,10 +217,12 @@ export default function App() {
     const prefix = clean.slice(0, 3);
 
     const exact = catchers.filter(
+      
       (c) =>
         Array.isArray(c.postcodes) &&
         c.postcodes.includes(clean)
     );
+    console.log("👉 EXACT MATCH RESULTS:", exact.map(c => c.name));
 
     const nearby = catchers.filter(
       (c) =>
@@ -167,7 +250,11 @@ else {
 }
 
     setHasSearched(true);
+
+    
   };
+
+  
 
   const search = () => {
   setError("");
@@ -222,6 +309,14 @@ else {
     setError("");
     setWarning("");
   };
+  const resetSearch = () => {
+  setPostcode("");
+  setHasSearched(false);
+  setResults([]);
+  setNearbyResults([]);
+  setError("");
+  setWarning("");
+};
 
   /* =========================
      WELCOME NOTICE POP UP
@@ -281,6 +376,15 @@ if (screen === "firstAid") {
   /* =========================
    MAIN SCREEN
 ========================= */
+
+if (!dataReady) {
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" />
+      <Text>Loading catchers...</Text>
+    </View>
+  );
+}
 return (
   <MainScreen
     postcode={postcode}
@@ -302,6 +406,9 @@ return (
     onFirstAid={() => setScreen("firstAid")}
     APP_STORE_LINK={APP_STORE_LINK}
     PLAY_STORE_LINK={PLAY_STORE_LINK}
+    setHasSearched={setHasSearched}
+    setResults={setResults}
+    resetSearch={resetSearch}
   />
 );
 }

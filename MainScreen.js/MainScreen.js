@@ -18,10 +18,10 @@ import {
 import { StatusBar } from "expo-status-bar";
 import ScreenFooter from "../components/ScreenFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { stylesheet as styles } from "../styles/stylesheet";
+import { stylesheet as styles } from "../Styles/stylesheet";
+
+
 export default function MainScreen({
-
-
   postcode,
   setPostcode,
   error,
@@ -41,20 +41,25 @@ export default function MainScreen({
   onFirstAid,
   APP_STORE_LINK,
   PLAY_STORE_LINK,
+  setHasSearched = () => {},
+  setResults = () => {},
+  setNearbyResults = () => {},
+  resetSearch,
 }) {
+
+
+
   return (
     <View style={styles.container}>
 
       {/* ===== TOP BAR (Home reset + Logo) ===== */}
       <View style={styles.topBar}>
         <TouchableOpacity
-         onPress={() => {
-        setPostcode("");
-        }}
-          style={styles.homeButton}
-        >
-          <Text style={styles.homeButtonText}>← Home</Text>
-        </TouchableOpacity>
+  onPress={resetSearch}
+  style={styles.homeButton}
+>
+  <Text style={styles.homeButtonText}>← Home</Text>
+</TouchableOpacity>
 
         <Image
           source={require("../assets/logo.png")}
@@ -124,17 +129,37 @@ export default function MainScreen({
      
       {/* ===== RESULTS LIST (CATCHER CARDS) ===== */}
       <FlatList
-        data={(displayData || []).sort((a, b) => {
-          const aPriority = priorityIds.includes(String(a.id)) ? 1 : 0;
-          const bPriority = priorityIds.includes(String(b.id)) ? 1 : 0;
+        data={[...displayData].sort((a, b) => {
 
-          if (aPriority !== bPriority) return bPriority - aPriority;
+  // 1️⃣ PINNED FIRST (highest priority)
+  const aPinned = pinned.includes(String(a.id)) ? 1 : 0;
+  const bPinned = pinned.includes(String(b.id)) ? 1 : 0;
 
-          const aPinned = pinned.includes(String(a.id)) ? 1 : 0;
-          const bPinned = pinned.includes(String(b.id)) ? 1 : 0;
+  if (aPinned !== bPinned) {
+    return bPinned - aPinned;
+  }
 
-          return bPinned - aPinned;
-        })}
+  // 2️⃣ SPECIAL ID PRIORITY (id "4")
+  const aIsSpecial = a.id === "4" ? 1 : 0;
+  const bIsSpecial = b.id === "4" ? 1 : 0;
+
+  if (aIsSpecial !== bIsSpecial) {
+    return bIsSpecial - aIsSpecial;
+  }
+
+  // 3️⃣ OTHER PRIORITY IDS
+  const aPriority = priorityIds.includes(String(a.id)) ? 1 : 0;
+  const bPriority = priorityIds.includes(String(b.id)) ? 1 : 0;
+
+  if (aPriority !== bPriority) {
+    return bPriority - aPriority;
+  }
+
+  // 4️⃣ DEFAULT ORDER (no change)
+  return 0;
+})}
+
+
         keyExtractor={(item) => item.id?.toString()}
         renderItem={({ item }) => (
           
