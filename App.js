@@ -56,15 +56,22 @@ export default function App() {
   const isWeb = Platform.OS === "web";
   useEffect(() => {
   if (isWeb) {
+    // ✅ AdSense script
     const script = document.createElement("script");
     script.async = true;
     script.src =
       "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3658953223794524";
     script.crossOrigin = "anonymous";
-
     document.head.appendChild(script);
+
+    // ✅ AdSense verification meta tag
+    const meta = document.createElement("meta");
+    meta.name = "google-adsense-account";
+    meta.content = "ca-pub-3658953223794524";
+    document.head.appendChild(meta);
   }
 }, []);
+
   
 
   
