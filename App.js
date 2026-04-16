@@ -55,6 +55,8 @@ export default function App() {
   const [dataReady, setDataReady] = useState(false);
   const isWeb = Platform.OS === "web";
   
+
+  
   
 
   const resetHome = () => {
@@ -69,13 +71,16 @@ export default function App() {
 useEffect(() => {
   const loadCache = async () => {
 
-    await AsyncStorage.removeItem(CACHE_KEY);
+    if (!isWeb) {
+  await AsyncStorage.removeItem(CACHE_KEY);
+}
 
     try {
       const cached = await AsyncStorage.getItem(CACHE_KEY);
 
      if (cached) {
   const parsed = JSON.parse(cached);
+  
 
   // version check
   if (parsed.version === DATA_VERSION) {
