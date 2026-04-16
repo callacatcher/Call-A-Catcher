@@ -7,14 +7,17 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -23,6 +26,7 @@
       "edgeToEdgeEnabled": true,
       "package": "com.callacatcher.callacatcher"
     },
+
     "web": {
       "favicon": "./assets/icon.png",
       "name": "Call a Catcher",
@@ -30,17 +34,23 @@
       "display": "standalone",
       "backgroundColor": "#ffffff",
       "themeColor": "#000000",
-      "bundler": "metro"
+      "bundler": "metro",
+      "meta": {
+        "google-adsense-account": "ca-pub-3658953223794524"
+      }
     },
+
     "extra": {
       "eas": {
         "projectId": "aff17be6-f45f-473f-a720-5a8edf3d2a16"
       }
     },
+
     "updates": {
       "enabled": true,
       "fallbackToCacheTimeout": 0
     },
+
     "plugins": [
       "expo-web-browser"
     ]
