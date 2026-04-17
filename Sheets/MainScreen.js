@@ -148,8 +148,8 @@ export default function MainScreen({
   }
 
   // 3️⃣ OTHER PRIORITY IDS
-  const aPriority = priorityIds.includes(String(a.id)) ? 1 : 0;
-  const bPriority = priorityIds.includes(String(b.id)) ? 1 : 0;
+  const aPriority = Array.isArray(priorityIds) && priorityIds.includes(String(a.id)) ? 1 : 0;
+const bPriority = Array.isArray(priorityIds) && priorityIds.includes(String(b.id)) ? 1 : 0;
 
   if (aPriority !== bPriority) {
     return bPriority - aPriority;

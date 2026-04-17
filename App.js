@@ -2,11 +2,9 @@
      CALL A Catcher App
   ========================= */
 
-
- //IMPORTS//
+// IMPORTS
 import { useState, useEffect } from "react";
 import {
-  
   Text,
   View,
   TextInput,
@@ -17,11 +15,13 @@ import {
   Platform,
   ActivityIndicator
 } from "react-native";
+
 import { StatusBar } from "expo-status-bar";
 import * as Clipboard from "expo-clipboard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
-import { catchers as initialCatchers } from "./data/catchers";
+import { CATCHERS_DATA } from "./data/catchers";
+
 import AppFooter from "./components/AppFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import WebAdBanner from "./components/WebAdBanner";
@@ -30,113 +30,75 @@ import { stylesheet as styles } from "./styles/stylesheet";
 import FirstAidScreen from "./Sheets/FirstAidScreen";
 import SignupScreen from "./Sheets/SignupScreen";
 import MainScreen from "./Sheets/MainScreen";
-import { CATCHERS_DATA } from "./data/catchers";
-console.log("INITIAL CATCHERS:", initialCatchers);
 
 const APP_STORE_LINK = "";
 const PLAY_STORE_LINK = "";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
-  const initialCatchers = CATCHERS_DATA.data;
+
   const [postcode, setPostcode] = useState("");
   const [results, setResults] = useState([]);
   const [nearbyResults, setNearbyResults] = useState([]);
   const [catchers, setCatchers] = useState([]);
+
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState("");
   const [warning, setWarning] = useState("");
+
   const [showNotice, setShowNotice] = useState(false);
   const [showAll, setShowAll] = useState(false);
+
   const [pinned, setPinned] = useState([]);
   const [dataReady, setDataReady] = useState(false);
+  const priorityIds = ["3"];
   const isWeb = Platform.OS === "web";
-  useEffect(() => {
-  if (isWeb) {
-    // ✅ AdSense script
-    const script = document.createElement("script");
-    script.async = true;
-    script.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3658953223794524";
-    script.crossOrigin = "anonymous";
-    document.head.appendChild(script);
-
-    // ✅ AdSense verification meta tag
-    const meta = document.createElement("meta");
-    meta.name = "google-adsense-account";
-    meta.content = "ca-pub-3658953223794524";
-    document.head.appendChild(meta);
-  }
-}, []);
-
-  
-
-  
-  
-
-  const resetHome = () => {
-  setResults([]);
-  setNearbyResults([]);
-  setError("");
-  setWarning("");
-  setHasSearched(false);
-  setPostcode("");
-};
-
-useEffect(() => {
-  const loadCatchers = async () => {
-    setCatchers(CATCHERS_DATA.data);
-    setDataReady(true);
-  };
-
-  loadCatchers();
-}, []);
-  
-
 
   const withLoading = async (fn) => {
-    try {
-      setLoading(true);
-      await fn();
-    } finally {
-      setLoading(false);
+  try {
+    setLoading(true);
+    await fn();
+  } finally {
+    setLoading(false);
+  }
+};
+
+  /* =========================
+     ADSENSE
+  ========================= */
+  useEffect(() => {
+    if (isWeb) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src =
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3658953223794524";
+      script.crossOrigin = "anonymous";
+      document.head.appendChild(script);
+
+      const meta = document.createElement("meta");
+      meta.name = "google-adsense-account";
+      meta.content = "ca-pub-3658953223794524";
+      document.head.appendChild(meta);
     }
-  };
+  }, []);
 
-  const priorityIds = ["3"];
+  /* =========================
+     LOAD DATA (NO CACHE)
+  ========================= */
+  useEffect(() => {
+    const loadCatchers = async () => {
+      setCatchers(CATCHERS_DATA.data);
+      setDataReady(true);
+    };
 
-const searchActive = hasSearched && results.length > 0;
+    loadCatchers();
+  }, []);
 
-const baseList = searchActive ? results : catchers;
-
-// pinned only matters when NOT searching
-const pinnedOnly = catchers.filter((c) =>
-  pinned.includes(String(c.id))
-);
-
-// pinned matches inside search results only
-const pinnedInSearch = searchActive
-  ? baseList.filter((c) => pinned.includes(String(c.id)))
-  : [];
-
-// unpinned results
-const unpinned = searchActive
-  ? baseList.filter((c) => !pinned.includes(String(c.id)))
-  : showAll
-  ? catchers.filter((c) => !pinned.includes(String(c.id)))
-  : [];
-
-const displayData = searchActive
-  ? [...pinnedInSearch, ...unpinned]
-  : showAll
-  ? catchers
-  : pinnedOnly;
-
-console.log("CATCHERS:", catchers.length);
-console.log("DISPLAY DATA:", displayData.length);
-
-
+  /* =========================
+     PIN SYSTEM
+  ========================= */
   useEffect(() => {
     const loadPinned = async () => {
       const stored = await AsyncStorage.getItem("pinned_catchers");
@@ -163,6 +125,9 @@ console.log("DISPLAY DATA:", displayData.length);
     savePinned(updated);
   };
 
+  /* =========================
+     NOTICE
+  ========================= */
   useEffect(() => {
     const checkNotice = async () => {
       const last = await AsyncStorage.getItem("notice_last_shown");
@@ -181,13 +146,14 @@ console.log("DISPLAY DATA:", displayData.length);
     checkNotice();
   }, []);
 
+  /* =========================
+     SEARCH
+  ========================= */
   const performSearch = async (value) => {
-    console.log("👉 SEARCH INPUT (RAW):", value);
     setError("");
     setWarning("");
 
     const clean = value.trim();
-    console.log("👉 CLEAN INPUT:", clean);
 
     if (!clean || clean.length < 3) {
       setError("Please enter a valid postcode");
@@ -197,12 +163,10 @@ console.log("DISPLAY DATA:", displayData.length);
     const prefix = clean.slice(0, 3);
 
     const exact = catchers.filter(
-      
       (c) =>
         Array.isArray(c.postcodes) &&
         c.postcodes.includes(clean)
     );
-    console.log("👉 EXACT MATCH RESULTS:", exact.map(c => c.name));
 
     const nearby = catchers.filter(
       (c) =>
@@ -211,40 +175,38 @@ console.log("DISPLAY DATA:", displayData.length);
     );
 
     if (exact.length > 0) {
-  setResults(exact);
-  setNearbyResults([]);
-  setError("");
-  setWarning("");
-} 
-else if (nearby.length > 0) {
-  setResults(nearby);
-  setNearbyResults(nearby);
-  setWarning("We can’t find an exact match, but these may be close");
-  setError("");
-} 
-else {
-  setResults([]);
-  setNearbyResults([]);
-  setError("We do not list anyone nearby. Tap 'View All Catchers' and call any listed catcher and they can help find someone in your area.");
-  setWarning("");
-}
+      setResults(exact);
+      setNearbyResults([]);
+      setError("");
+      setWarning("");
+    } else if (nearby.length > 0) {
+      setResults(nearby);
+      setNearbyResults(nearby);
+      setWarning("We can’t find an exact match, but these may be close");
+      setError("");
+    } else {
+      setResults([]);
+      setNearbyResults([]);
+      setError(
+        "No catchers found nearby. Try 'View All Catchers'."
+      );
+      setWarning("");
+    }
 
     setHasSearched(true);
-
-    
   };
 
-  
-
   const search = () => {
-  setError("");
-  setWarning("");
-  performSearch(postcode);
-};
+    setError("");
+    setWarning("");
+    performSearch(postcode);
+  };
 
+  /* =========================
+     GPS
+  ========================= */
   const useMyLocation = async () => {
     setLoading(true);
-    await new Promise(requestAnimationFrame);
 
     try {
       let { status } =
@@ -256,30 +218,34 @@ else {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-
       const { latitude, longitude } = location.coords;
-      console.log("COORDS:", latitude, longitude);
 
-      const response = await fetch(
-  `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+     const response = await fetch(
+  `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`,
+  {
+    headers: {
+      "User-Agent": "call-a-catcher-app"
+    }
+  }
 );
 
-const data = await response.json();
+     const data = await response.json();
+
+console.log("📍 RAW GPS RESPONSE:", data);
 
 const detectedPostcode = data?.address?.postcode;
 
+console.log("📍 DETECTED POSTCODE:", detectedPostcode);
+
       if (!detectedPostcode) {
-        setError("GPS may not be accurate, try postcode search");
+        setError("Could not detect postcode");
         return;
       }
 
       setPostcode(detectedPostcode);
-      setHasSearched(true);
       await performSearch(detectedPostcode);
-
     } catch (err) {
-      setError("GPS may not be accurate, try postcode search");
-
+      setError("GPS error, try manual postcode");
     } finally {
       setLoading(false);
     }
@@ -291,17 +257,57 @@ const detectedPostcode = data?.address?.postcode;
     setError("");
     setWarning("");
   };
+
   const resetSearch = () => {
-  setPostcode("");
-  setHasSearched(false);
-  setResults([]);
-  setNearbyResults([]);
-  setError("");
-  setWarning("");
-};
+    setPostcode("");
+    setHasSearched(false);
+    setResults([]);
+    setNearbyResults([]);
+    setError("");
+    setWarning("");
+  };
 
   /* =========================
-     WELCOME NOTICE POP UP
+     LIST LOGIC (PIN SYSTEM)
+  ========================= */
+  const searchActive = hasSearched && results.length > 0;
+
+  const baseList = searchActive ? results : catchers;
+
+  const pinnedOnly = catchers.filter((c) =>
+    pinned.includes(String(c.id))
+  );
+
+  const pinnedInSearch = searchActive
+    ? baseList.filter((c) => pinned.includes(String(c.id)))
+    : [];
+
+  const unpinned = searchActive
+    ? baseList.filter((c) => !pinned.includes(String(c.id)))
+    : showAll
+    ? catchers.filter((c) => !pinned.includes(String(c.id)))
+    : [];
+
+  const displayData = searchActive
+    ? [...pinnedInSearch, ...unpinned]
+    : showAll
+    ? catchers
+    : pinnedOnly;
+
+  /* =========================
+     LOADING SCREEN
+  ========================= */
+  if (!dataReady) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" />
+        <Text>Loading catchers...</Text>
+      </View>
+    );
+  }
+
+  /* =========================
+     NOTICE SCREEN
   ========================= */
   if (showNotice) {
     return (
@@ -309,14 +315,7 @@ const detectedPostcode = data?.address?.postcode;
         <Text style={styles.title}>Important Notice</Text>
 
         <Text style={styles.noticeText}>
-          Welcome to the Call-A-Catcher Web App.
-            This app works completely offline, 
-                        BUT
-        to Keep the Listings up to date, You will
-                 need to be online.
-      click the ⋮ in your top right corner, and select
-      "add to homescreen" and it will look just like an
-          app on your phone screen from now on.
+          Welcome to Call-A-Catcher.
         </Text>
 
         <TouchableOpacity
@@ -329,70 +328,51 @@ const detectedPostcode = data?.address?.postcode;
             setShowNotice(false);
           }}
         >
-          <Text style={styles.noticeButtonText}>I Understand</Text>
+          <Text>I Understand</Text>
         </TouchableOpacity>
-        
- <AppFooter />
+
+        <AppFooter />
       </View>
     );
   }
 
   /* =========================
-   SIGNUP SCREEN
-========================= */
-if (screen === "signup") {
-  return (
-    <SignupScreen onBack={() => setScreen("home")} />
-  );
-}
+     ROUTES
+  ========================= */
+  if (screen === "signup") {
+    return <SignupScreen onBack={() => setScreen("home")} />;
+  }
 
-/* =========================
-   FIRST AID SCREEN
-========================= */
-if (screen === "firstAid") {
-  return (
-    <FirstAidScreen onBack={() => setScreen("home")} />
-  );
-}
+  if (screen === "firstAid") {
+    return <FirstAidScreen onBack={() => setScreen("home")} />;
+  }
 
   /* =========================
-   MAIN SCREEN
-========================= */
-
-if (!dataReady) {
+     MAIN APP
+  ========================= */
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" />
-      <Text>Loading catchers...</Text>
-    </View>
+    <MainScreen
+  postcode={postcode}
+  setPostcode={setPostcode}
+  error={error}
+  warning={warning}
+  loading={loading}
+  showAll={showAll}
+  setShowAll={setShowAll}
+  search={search}
+  useMyLocation={useMyLocation}
+  withLoading={withLoading}   // ✅ ADD THIS
+  displayData={displayData}
+  pinned={pinned}
+  togglePin={togglePin}
+  priorityIds={priorityIds}   // ✅ also pass this (you’re using it in MainScreen)
+  handlePostcodeChange={handlePostcodeChange}
+  resetSearch={resetSearch}
+  onSignup={() => setScreen("signup")}
+  onFirstAid={() => setScreen("firstAid")}
+  APP_STORE_LINK={APP_STORE_LINK}
+  PLAY_STORE_LINK={PLAY_STORE_LINK}
+/>
   );
 }
-return (
-  <MainScreen
-    postcode={postcode}
-    setPostcode={setPostcode}
-    error={error}
-    warning={warning}
-    loading={loading}
-    showAll={showAll}
-    setShowAll={setShowAll}
-    search={search}
-    useMyLocation={useMyLocation}
-    withLoading={withLoading}
-    displayData={displayData}
-    pinned={pinned}
-    togglePin={togglePin}
-    priorityIds={priorityIds}
-    handlePostcodeChange={handlePostcodeChange}
-    onSignup={() => setScreen("signup")}
-    onFirstAid={() => setScreen("firstAid")}
-    APP_STORE_LINK={APP_STORE_LINK}
-    PLAY_STORE_LINK={PLAY_STORE_LINK}
-    setHasSearched={setHasSearched}
-    setResults={setResults}
-    resetSearch={resetSearch}
-  />
-);
-}
-//END//
-
+// END
