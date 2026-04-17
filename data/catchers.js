@@ -1,22 +1,7 @@
 export const CATCHERS_DATA = {
-  version: "435",
+  version: "442535",
   data: [
-    {
-      id: "1",
-      name: "For Goodness Snakes",
-      phone: "0400457868",
-      status: "24/7 Emergency",
-      postcodes: ["3156", "3156", "3155", "3154", "3152", 
-        "3150", "3160", "3785", "3786", "3787", "3796", 
-        "3799", "3781", "3782", "3783", "3788", "3789", 
-        "3793", "3139", "3795", "3797", "3810", "3153", 
-        "3135", "3136", "3137", "3802", "3804", "3805", 
-        "3806", "3808", "3177", "3175", "3057", "3095", 
-        "3113"],
-      facebook: "https://www.facebook.com/profile.php?id=61569975639136",
-      positiveReviews: 11+0,
-      negativeReviews: 0,
-    },
+    
     {
       id: "3",
       name: "For Goodness Snakes",

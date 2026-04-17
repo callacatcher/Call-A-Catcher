@@ -1,7 +1,7 @@
 /* =========================
      CALL A Catcher App
   ========================= */
-
+console.log("🔥 BUILD CHECK CATCHERS VERSION:", CATCHERS_DATA.version);
 // IMPORTS
 import { useState, useEffect } from "react";
 import {
