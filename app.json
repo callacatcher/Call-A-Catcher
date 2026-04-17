@@ -4,13 +4,13 @@
     "slug": "call-a-catcher",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/cc.png",
+    "icon": "./assets/splash-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
 
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "2732x2732",
       "backgroundColor": "#ffffff"
     },
 
@@ -20,8 +20,8 @@
 
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png", 
-       
+        "foregroundImage": "./assets/icon.png", 
+       "resizeMode": "1024x1024",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
