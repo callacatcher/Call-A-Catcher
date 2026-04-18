@@ -214,7 +214,7 @@ export const stylesheet = StyleSheet.create({
   },
 
   name: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "600",
   },
 
