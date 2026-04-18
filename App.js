@@ -1,7 +1,7 @@
 /* =========================
      CALL A Catcher App
   ========================= */
-console.log("🔥 BUILD CHECK CATCHERS VERSION:", CATCHERS_DATA.version);
+
 // IMPORTS
 import { useState, useEffect } from "react";
 import {
@@ -21,7 +21,7 @@ import * as Clipboard from "expo-clipboard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
 import { CATCHERS_DATA } from "./data/catchers";
-
+console.log("🔥 BUILD CHECK CATCHERS VERSION:", CATCHERS_DATA.version);
 import AppFooter from "./components/AppFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import WebAdBanner from "./components/WebAdBanner";
@@ -315,7 +315,10 @@ console.log("📍 DETECTED POSTCODE:", detectedPostcode);
         <Text style={styles.title}>Important Notice</Text>
 
         <Text style={styles.noticeText}>
-          Welcome to Call-A-Catcher.
+          Welcome to Call-A-Catcher. This is a
+          Reminder to Check the location you
+          are travelling to if remote, before
+          you leave incase there is no Internet
         </Text>
 
         <TouchableOpacity
