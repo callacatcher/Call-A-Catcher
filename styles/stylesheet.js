@@ -202,7 +202,7 @@ export const stylesheet = StyleSheet.create({
   ========================= */
   card: {
     backgroundColor: "#f9f9f9",
-    padding: 15,
+    padding: 10,
     borderRadius: 5,
     marginBottom: 5,
     margintop: 5,
@@ -227,7 +227,7 @@ export const stylesheet = StyleSheet.create({
   callButton: {
     backgroundColor: "#c62828",
     flex: 5,
-    padding: 10,
+    padding: 8,
     borderRadius: 6,
     alignItems: "center",
   },
