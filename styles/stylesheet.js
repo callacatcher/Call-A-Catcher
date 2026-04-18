@@ -327,4 +327,18 @@ export const stylesheet = StyleSheet.create({
     marginTop: 35,
   },
 
+  /* =========================
+     SPLASH
+  ========================= */
+  splash: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  splashImage: {
+    width: "80%",
+    aspectRatio: 1,
+  },
 });
