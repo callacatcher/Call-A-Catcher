@@ -202,7 +202,7 @@ export const stylesheet = StyleSheet.create({
   ========================= */
   card: {
     backgroundColor: "#f9f9f9",
-    padding: 10,
+    padding: 0,
     borderRadius: 5,
     marginBottom: 5,
     marginTop: 5,
@@ -210,13 +210,14 @@ export const stylesheet = StyleSheet.create({
 
   cardHeader: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
 
   name: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "600",
+    marginLeft: 10,
   },
 
   actionRow: {

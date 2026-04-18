@@ -170,18 +170,18 @@ const bPriority = Array.isArray(priorityIds) && priorityIds.includes(String(b.id
               <Text style={styles.name}>{item.name}</Text>
 
               <TouchableOpacity onPress={() => togglePin(item.id)}>
-                <Text style={{ fontSize: 32 }}>
+                <Text style={{ fontSize: 20 }}>
                   {pinned.includes(String(item.id)) ? "⭐" : "☆"}
                 </Text>
               </TouchableOpacity>
             </View>
 
-            <Text style={{ color: "#666", marginBottom: 10 }}>
+            <Text style={{ color: "#666", marginBottom: 0,marginLeft: 10 }}>
               {item.status}
             </Text>
 
             {(item.positiveReviews > 0 || item.negativeReviews > 0) && (
-              <View style={{ flexDirection: "row", marginBottom: 10, gap: 12 }}>
+              <View style={{ flexDirection: "row", marginBottom: 2, marginLeft: 10, gap: 12 }}>
                 
                 {item.positiveReviews > 0 && (
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
