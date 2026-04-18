@@ -203,8 +203,8 @@ export const stylesheet = StyleSheet.create({
   card: {
     backgroundColor: "#f9f9f9",
     padding: 15,
-    borderRadius: 10,
-    marginBottom: 10,
+    borderRadius: 5,
+    marginBottom: 5,
   },
 
   cardHeader: {
@@ -214,7 +214,7 @@ export const stylesheet = StyleSheet.create({
   },
 
   name: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "600",
   },
 
