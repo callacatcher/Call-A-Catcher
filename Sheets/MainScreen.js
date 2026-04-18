@@ -169,11 +169,17 @@ const bPriority = Array.isArray(priorityIds) && priorityIds.includes(String(b.id
             <View style={styles.cardHeader}>
               <Text style={styles.name}>{item.name}</Text>
 
-              <TouchableOpacity onPress={() => togglePin(item.id)}>
-                <Text style={{ fontSize: 20 }}>
-                  {pinned.includes(String(item.id)) ? "⭐" : "☆"}
-                </Text>
-              </TouchableOpacity>
+              <TouchableOpacity
+         onPress={() => togglePin(item.id)}
+          style={{
+          position: "absolute",
+           right: 30,
+          }}
+>
+           <Text style={{ fontSize: 25, transform: [{ scale: 1.4 }] }}>
+           {pinned.includes(String(item.id)) ? "⭐" : "☆"}
+           </Text>
+           </TouchableOpacity>
             </View>
 
             <Text style={{ color: "#666", marginBottom: 0,marginLeft: 10 }}>
