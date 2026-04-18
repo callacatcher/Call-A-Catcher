@@ -205,6 +205,7 @@ export const stylesheet = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     marginBottom: 5,
+    margintop: 5,
   },
 
   cardHeader: {
