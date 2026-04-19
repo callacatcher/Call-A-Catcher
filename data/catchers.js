@@ -111,5 +111,21 @@ export const CATCHERS_DATA = {
       positiveReviews: 42+9,
       negativeReviews: 0,
     },
+     {
+      id: "9",
+      name: "Snake Catcher Victoria",
+      phone: "0408067062",
+      status: "24hr Emergency",
+      postcodes: ["3931", "3175", "3199", "3172", "3197", "3806",
+     "3977", "3810", "3978", "3936", "3926", "3911", "3918",
+    "3942", "3939", "3929", "3915", "3920", "3938", "3928", 
+    "3916", "3926", "3933", "3931", "3930", "3934", "3916", 
+    "3944", "3937", "3939", "3940", "3941", "3936", "3916",
+     "3927", "3912", "3943", "3941", "3915", "3913"],
+       website: "https://snakecatchervictoria.com.au",
+      facebook: "https://www.facebook.com/p/Snake-Catcher-Victoria-Australia-100083695991597/",
+      positiveReviews: 186+0,
+      negativeReviews: 0,
+    },
   ]
 };
