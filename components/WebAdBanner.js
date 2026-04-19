@@ -1,17 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Platform } from "react-native";
 
-const WebAdBanner = ({ type = "default" }) => {
+export default function WebAdBanner({ type = "default" }) {
   const isWeb = Platform.OS === "web";
 
-  const getTitle = () => {
-    if (isWeb) return "Advertisement";
-    return "Ad Preview";
-  };
-
-  const getBody = () => {
+  const getText = () => {
     if (isWeb) return "AdSense Slot (Web Build)";
-    
+
     switch (type) {
       case "home":
         return "Home Screen Ad Slot (Preview)";
@@ -25,46 +20,35 @@ const WebAdBanner = ({ type = "default" }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>{getTitle()}</Text>
-
-      <View style={styles.box}>
-        <Text style={styles.text}>{getBody()}</Text>
+    <View style={styles.wrapper}>
+      <View style={styles.adBox}>
+        <Text style={styles.text}>{getText()}</Text>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
+    width: "100%",
     alignItems: "center",
-    marginTop: 0,
-marginBottom: 0,
   },
-  label: {
-    fontSize: 5,
-    color: "#999",
-    marginBottom: 0
 
-  },
-  box: {
+  adBox: {
     width: "100%",
     maxWidth: 365,
-    height: 40,
+    height: 30,
     backgroundColor: "#f2f2f2",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#ddd",
-    marginBottom: 0,
-
   },
+
   text: {
+    fontSize: 12,
     color: "#666",
     textAlign: "center",
-    paddingHorizontal: 10,
   },
 });
-
-export default WebAdBanner;

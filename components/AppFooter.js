@@ -29,6 +29,7 @@ borderBottomColor: "#ddd",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 0,
   },
 
   footerText: {

@@ -137,7 +137,6 @@ export const stylesheet = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 10,
     backgroundColor: "#eee",
-    borderRadius: 6,
   },
 
   homeButtonText: {
@@ -147,21 +146,34 @@ export const stylesheet = StyleSheet.create({
 
   emergencyButton: {
     backgroundColor: "#d32f2f",
-    padding: 16,
+    paddingVertical: 8,
+  paddingHorizontal: 14,
     borderRadius: 8,
     alignItems: "center",
+    marginBottom: 2,
   },
 
   emergencyText: {
     color: "#fff",
     fontWeight: "bold",
   },
+  firstAidButton: {
+    backgroundColor: "#ff9800",
+    paddingVertical: 8,
+  paddingHorizontal: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 2,
+
+  },
 
   signupButton: {
     backgroundColor: "#111",
-    padding: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
     borderRadius: 8,
     alignItems: "center",
+    marginBottom: 2,
   },
 
   signupText: {
@@ -171,7 +183,8 @@ export const stylesheet = StyleSheet.create({
 
   updateButton: {
     backgroundColor: "#1565c0",
-    padding: 16,
+    paddingVertical: 8,
+  paddingHorizontal: 14,
     borderRadius: 8,
     alignItems: "center",
   },
@@ -181,12 +194,6 @@ export const stylesheet = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  firstAidButton: {
-    backgroundColor: "#ff9800",
-    padding: 16,
-    borderRadius: 8,
-    alignItems: "center",
-  },
 
   noticeButton: {
     backgroundColor: "#1b5e20",
