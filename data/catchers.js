@@ -1,5 +1,5 @@
 export const CATCHERS_DATA = {
-  version: "4232424",
+  version: "2424",
   data: [
     
     {

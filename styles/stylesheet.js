@@ -12,7 +12,7 @@ export const stylesheet = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 40,
+    paddingTop: 10,
     backgroundColor: "#fff",
   },
 
@@ -24,7 +24,7 @@ export const stylesheet = StyleSheet.create({
 
  bottomSection: {
   width: "100%",
-  padding: 10,
+  padding: 5,
   backgroundColor: "#fff",
   borderTopWidth: 1,
   borderColor: "#ddd",
@@ -298,8 +298,9 @@ minimizeBar: {
      FOOTER
   ========================= */
   footer: {
+    marginBottom: 20,
     marginTop: 20,
-    paddingVertical: 12,
+    paddingVertical: 10,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
     alignItems: "center",
@@ -307,7 +308,7 @@ minimizeBar: {
   },
 
   footerText: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#777",
     fontWeight: "500",
   },

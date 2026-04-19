@@ -19,7 +19,7 @@ export default function AppFooter() {
 
 const styles = StyleSheet.create({
   footer: {
-    marginTop: 3,
+    marginTop: 0,
     paddingVertical: 12,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
