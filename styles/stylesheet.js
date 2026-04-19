@@ -175,7 +175,7 @@ export const stylesheet = StyleSheet.create({
     alignItems: "center",
     marginBottom: 2,
   },
-
+  
   signupText: {
     color: "#fff",
     fontWeight: "bold",
@@ -206,6 +206,24 @@ export const stylesheet = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
+
+  emergencyButton2: {
+    backgroundColor: "#d32f2f",
+    paddingVertical: 30,
+  paddingHorizontal: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 2,
+  },
+  signupemailButton: {
+    backgroundColor: "#080808",
+    paddingVertical: 30,
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 2,
+  },
+  
 
   /* =========================
      CARDS / LIST ITEMS
@@ -244,6 +262,14 @@ minimizeBar: {
     borderRadius: 5,
     marginBottom: 5,
     marginTop: 5,
+  },
+
+  card2: {
+    backgroundColor: "#f9f9f9",
+    padding: 30,
+    borderRadius: 5,
+    marginBottom: 5,
+    marginTop: 50,
   },
 
   cardHeader: {

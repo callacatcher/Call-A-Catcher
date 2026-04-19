@@ -21,12 +21,12 @@ export default function SignupScreen({ onBack }) {
       </View>
 
       {/* SCREEN TITLE */}
-      <Text style={[styles.title, { marginTop: 10 }]}>
+      <Text style={[styles.title, { marginTop: 30 }]}>
         Catcher Sign Up
       </Text>
 
       {/* INSTRUCTIONS TEXT */}
-      <Text style={{ marginVertical: 20, textAlign: "center" }}>
+      <Text style={{ marginVertical: 40, textAlign: "center" }}>
         Copy this template and edit it with your details:
       </Text>
 
@@ -65,7 +65,7 @@ export default function SignupScreen({ onBack }) {
 
       {/* EMAIL BUTTON */}
       <TouchableOpacity
-        style={styles.emergencyButton}
+        style={styles.signupemailButton}
         onPress={() =>
           Linking.openURL(
             "mailto:callacatcher@gmail.com?subject=New%20Catcher%20Submission"

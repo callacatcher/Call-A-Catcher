@@ -27,14 +27,15 @@ export default function FirstAidScreen({ onBack }) {
       <Text style={styles.title}>Snake Bite First Aid</Text>
 
       {/* CONTENT AREA */}
-      <View style={styles.card}>
+      <View style={styles.card2}>
 
         <Text style={[styles.stepTitle, { color: "#d32f2f" }]}>
           S — STAY STILL
         </Text>
         <View style={styles.bullets}>
           <Text style={styles.bullet}>• Do NOT move the affected limb</Text>
-          <Text style={styles.bullet}>• Movement spreads venom quickly</Text>
+          <Text style={styles.bullet}>• Movement spreads venom quickly
+          </Text>
         </View>
 
         <Text style={[styles.stepTitle, { color: "#1565c0" }]}>
@@ -73,7 +74,7 @@ export default function FirstAidScreen({ onBack }) {
 
       {/* EMERGENCY BUTTON */}
       <TouchableOpacity
-        style={styles.emergencyButton}
+        style={styles.emergencyButton2}
         onPress={() => Linking.openURL("tel:000")}
       >
         <Text style={styles.emergencyText}>
