@@ -264,12 +264,12 @@ minimizeBar: {
     marginTop: 5,
   },
 
-  card2: {
+  emergencycard: {
     backgroundColor: "#f9f9f9",
     padding: 30,
     borderRadius: 5,
     marginBottom: 5,
-    marginTop: 50,
+    marginTop: 0,
   },
 
   cardHeader: {

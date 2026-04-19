@@ -26,7 +26,7 @@ export default function SignupScreen({ onBack }) {
       </Text>
 
       {/* INSTRUCTIONS TEXT */}
-      <Text style={{ marginVertical: 40, textAlign: "center" }}>
+      <Text style={{ marginVertical: 20, textAlign: "center" }}>
         Copy this template and edit it with your details:
       </Text>
 
@@ -59,7 +59,7 @@ export default function SignupScreen({ onBack }) {
       </TouchableOpacity>
 
       {/* WARNING TEXT */}
-      <Text style={{ marginVertical: 20, textAlign: "center" }}>
+      <Text style={{ marginVertical: 10, textAlign: "center" }}>
         Do not remove any punctuation. Edit and send it to us.
       </Text>
 
