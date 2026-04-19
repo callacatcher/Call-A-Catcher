@@ -20,7 +20,7 @@ export default function AppFooter() {
 const styles = StyleSheet.create({
   footer: {
     marginTop: 0,
-    paddingVertical: 12,
+    paddingVertical: 0,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
     borderBottomWidth: 1,
@@ -32,14 +32,14 @@ borderBottomColor: "#ddd",
   },
 
   footerText: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#777",
     fontWeight: "500",
     marginRight: 8,
   },
 
   footerLogo: {
-    width: 20,
-    height: 20,
+    width: 10,
+    height: 10,
   },
 });

@@ -42,9 +42,10 @@ const styles = StyleSheet.create({
 marginBottom: 0,
   },
   label: {
-    fontSize: 12,
+    fontSize: 5,
     color: "#999",
-    marginBottom: 6,
+    marginBottom: 0
+
   },
   box: {
     width: "100%",
@@ -56,6 +57,8 @@ marginBottom: 0,
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#ddd",
+    marginBottom: 0,
+
   },
   text: {
     color: "#666",
