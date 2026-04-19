@@ -213,7 +213,7 @@ export const stylesheet = StyleSheet.create({
   paddingHorizontal: 14,
     borderRadius: 8,
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 50,  
     marginBottom: 20,
   },
   signupemailButton: {
@@ -291,7 +291,7 @@ minimizeBar: {
   },
 
   callButton: {
-    backgroundColor: "#c62828",
+    backgroundColor: "#5ec264",
     flex: 5,
     padding: 8,
     borderRadius: 6,
