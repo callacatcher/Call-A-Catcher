@@ -22,10 +22,13 @@ export const stylesheet = StyleSheet.create({
     marginBottom: 0,
   },
 
-  bottomSection: {
-    paddingTop: 10,
-    paddingBottom: 0,
-    gap: 5,
+ bottomSection: {
+  width: "100%",
+  padding: 10,
+  backgroundColor: "#fff",
+  borderTopWidth: 1,
+  borderColor: "#ddd",
+
   },
 
   /* =========================
@@ -200,6 +203,34 @@ export const stylesheet = StyleSheet.create({
   /* =========================
      CARDS / LIST ITEMS
   ========================= */
+resultsWrapper: {
+  flex: 1,
+},
+  
+  resultsContainer: {
+  position: "absolute",
+  top: 220, // 👈 adjust to match your current list start
+  left: 10,
+  right: 10,
+  backgroundColor: "#fff",
+  borderRadius: 12,
+  overflow: "hidden",
+  elevation: 6,
+  zIndex: 999,
+},
+
+minimizeBar: {
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: 50,
+  backgroundColor: "#eee",
+  justifyContent: "center",
+  borderTopWidth: 1,
+  borderColor: "#ccc",
+},
+  
   card: {
     backgroundColor: "#f9f9f9",
     padding: 0,

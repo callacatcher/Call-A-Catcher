@@ -50,7 +50,7 @@ export default function MainScreen({
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { flex: 1 }]}>
 
       {/* ===== TOP BAR (Home reset + Logo) ===== */}
       <View style={styles.topBar}>
@@ -127,120 +127,120 @@ export default function MainScreen({
      
      
      
-      {/* ===== RESULTS LIST (CATCHER CARDS) ===== */}
-      <FlatList
-        data={[...displayData].sort((a, b) => {
+    {/* ===== RESULTS LIST (CATCHER CARDS) ===== */}
+    
+{/* ===== RESULTS LIST (CATCHER CARDS) ===== */}
+<View style={styles.resultsWrapper}>
 
-  // 1️⃣ PINNED FIRST (highest priority)
-  const aPinned = pinned.includes(String(a.id)) ? 1 : 0;
-  const bPinned = pinned.includes(String(b.id)) ? 1 : 0;
+  <FlatList
+    data={
+      
+      [...displayData]
+        .filter(item => item && item.id && item.name)
+        .sort((a, b) => {
 
-  if (aPinned !== bPinned) {
-    return bPinned - aPinned;
-  }
+          const aPinned = pinned.includes(String(a.id)) ? 1 : 0;
+          const bPinned = pinned.includes(String(b.id)) ? 1 : 0;
+          if (aPinned !== bPinned) return bPinned - aPinned;
 
-  // 2️⃣ SPECIAL ID PRIORITY (id "4")
-  const aIsSpecial = a.id === "4" ? 1 : 0;
-  const bIsSpecial = b.id === "4" ? 1 : 0;
+          const aIsSpecial = a.id === "4" ? 1 : 0;
+          const bIsSpecial = b.id === "4" ? 1 : 0;
+          if (aIsSpecial !== bIsSpecial) return bIsSpecial - aIsSpecial;
 
-  if (aIsSpecial !== bIsSpecial) {
-    return bIsSpecial - aIsSpecial;
-  }
+          const aPriority =
+            Array.isArray(priorityIds) && priorityIds.includes(String(a.id)) ? 1 : 0;
+          const bPriority =
+            Array.isArray(priorityIds) && priorityIds.includes(String(b.id)) ? 1 : 0;
 
-  // 3️⃣ OTHER PRIORITY IDS
-  const aPriority = Array.isArray(priorityIds) && priorityIds.includes(String(a.id)) ? 1 : 0;
-const bPriority = Array.isArray(priorityIds) && priorityIds.includes(String(b.id)) ? 1 : 0;
+          if (aPriority !== bPriority) return bPriority - aPriority;
 
-  if (aPriority !== bPriority) {
-    return bPriority - aPriority;
-  }
+          return 0;
+        })
+    }
+    
+contentContainerStyle={{ paddingBottom: 160 }}
+    keyExtractor={(item, index) =>
+      item?.id ? String(item.id) : `fallback-${index}`
+    }
 
-  // 4️⃣ DEFAULT ORDER (no change)
-  return 0;
-})}
+    renderItem={({ item }) => {
+      if (!item) return null;
 
+      return (
+        <View style={styles.card}>
 
-        keyExtractor={(item) => item.id?.toString()}
-        renderItem={({ item }) => (
-          
-          <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.name}>{item.name || "Unknown"}</Text>
 
-            {/* === CARD HEADER (Name + Pin) === */}
-            <View style={styles.cardHeader}>
-              <Text style={styles.name}>{item.name}</Text>
-
-              <TouchableOpacity
-         onPress={() => togglePin(item.id)}
-          style={{
-          position: "absolute",
-           right: 30,
-          }}
->
-           <Text style={{ fontSize: 25, transform: [{ scale: 1.4 }] }}>
-           {pinned.includes(String(item.id)) ? "⭐" : "☆"}
-           </Text>
-           </TouchableOpacity>
-            </View>
-
-            <Text style={{ color: "#666", marginBottom: 0,marginLeft: 10 }}>
-              {item.status}
-            </Text>
-
-            {(item.positiveReviews > 0 || item.negativeReviews > 0) && (
-              <View style={{ flexDirection: "row", marginBottom: 2, marginLeft: 10, gap: 12 }}>
-                
-                {item.positiveReviews > 0 && (
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                    <MaterialCommunityIcons name="thumb-up" size={18} color="#2e7d32" />
-                    <Text style={{ color: "#2e7d32", fontWeight: "600" }}>
-                      {item.positiveReviews}
-                    </Text>
-                  </View>
-                )}
-
-                {item.negativeReviews > 0 && (
-                  <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                    <MaterialCommunityIcons name="thumb-down" size={18} color="#c62828" />
-                    <Text style={{ color: "#c62828", fontWeight: "600" }}>
-                      {item.negativeReviews}
-                    </Text>
-                  </View>
-                )}
-
-              </View>
-            )}
-
-            <View style={styles.actionRow}>
-              <TouchableOpacity
-                style={styles.callButton}
-                onPress={() => Linking.openURL(`tel:${item.phone}`)}
-              >
-                <Text style={styles.callText}>Call</Text>
-              </TouchableOpacity>
-
-              {item.website && (
-                <TouchableOpacity
-                  style={styles.webButton}
-                  onPress={() => Linking.openURL(item.website)}
-                >
-                  <Text style={styles.webText}>Website</Text>
-                </TouchableOpacity>
-              )}
-
-              {item.facebook && (
-                <TouchableOpacity
-                  style={styles.socialButton}
-                  onPress={() => Linking.openURL(item.facebook)}
-                >
-                  <Text style={styles.socialText}>Social</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-
+            <TouchableOpacity
+              onPress={() => togglePin(item.id)}
+              style={{ position: "absolute", right: 30 }}
+            >
+              <Text style={{ fontSize: 25, transform: [{ scale: 1.4 }] }}>
+                {pinned.includes(String(item.id)) ? "⭐" : "☆"}
+              </Text>
+            </TouchableOpacity>
           </View>
-        )}
-      />
 
+          <Text style={{ color: "#666", marginLeft: 10 }}>
+            {item.status || ""}
+          </Text>
+
+          {(item.positiveReviews > 0 || item.negativeReviews > 0) && (
+            <View style={{ flexDirection: "row", marginLeft: 10, gap: 12 }}>
+              {item.positiveReviews > 0 && (
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                  <MaterialCommunityIcons name="thumb-up" size={18} color="#2e7d32" />
+                  <Text style={{ color: "#2e7d32", fontWeight: "600" }}>
+                    {item.positiveReviews}
+                  </Text>
+                </View>
+              )}
+
+              {item.negativeReviews > 0 && (
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                  <MaterialCommunityIcons name="thumb-down" size={18} color="#c62828" />
+                  <Text style={{ color: "#c62828", fontWeight: "600" }}>
+                    {item.negativeReviews}
+                  </Text>
+                </View>
+              )}
+            </View>
+          )}
+
+          <View style={styles.actionRow}>
+            <TouchableOpacity
+              style={styles.callButton}
+              onPress={() => item.phone && Linking.openURL(`tel:${item.phone}`)}
+            >
+              <Text style={styles.callText}>Call</Text>
+            </TouchableOpacity>
+
+            {item.website ? (
+              <TouchableOpacity
+                style={styles.webButton}
+                onPress={() => Linking.openURL(item.website)}
+              >
+                <Text style={styles.webText}>Website</Text>
+              </TouchableOpacity>
+            ) : null}
+
+            {item.facebook ? (
+              <TouchableOpacity
+                style={styles.socialButton}
+                onPress={() => Linking.openURL(item.facebook)}
+              >
+                <Text style={styles.socialText}>Social</Text>
+              </TouchableOpacity>
+            ) : null}
+          </View>
+
+        </View>
+      );
+    }}
+  />
+
+</View>
 
   {/* ===== BOTTOM ACTION SECTION (Emergency + App Actions) ===== */}
       <View style={[styles.bottomSection, { marginTop: 10 }]}>

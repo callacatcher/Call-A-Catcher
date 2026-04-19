@@ -1,5 +1,5 @@
 export const CATCHERS_DATA = {
-  version: "423543",
+  version: "4232424",
   data: [
     
     {
@@ -68,7 +68,7 @@ export const CATCHERS_DATA = {
       id: "5",
       name: "Central Victorian Snake Removal",
       phone: "0419877339",
-      status: "Open hours...",
+      status: " 7:30am - 7:30pm Weekdays and 8:30am - 7:30pm Weekends",
       postcodes: ["3064", "3099", "3432", "3433", "3435", 
         "3521", "3522", "3523", "3607", "3608", "3658", 
         "3659", "3660", "3715", "3117", "3718", "3719", 
@@ -100,6 +100,16 @@ export const CATCHERS_DATA = {
       facebook: "https://www.facebook.com/share/17qZode5JH/?mibextid=wwXIfr",
       positiveReviews: 0+30,
       negativeReviews: 0,
-    }
+    },
+    {
+      id: "8",
+      name: "Bass Coast Snake Catchers",
+      phone: "0429665399",
+      status: "24/7 Emergency",
+      postcodes: ["3992", "3995", "3984", "3925", "3951"],
+      facebook: "https://www.facebook.com/p/Bass-Coast-Snake-Catcher-61553720065841/",
+      positiveReviews: 42+9,
+      negativeReviews: 0,
+    },
   ]
 };
