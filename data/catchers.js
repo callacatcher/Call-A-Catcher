@@ -127,5 +127,15 @@ export const CATCHERS_DATA = {
       positiveReviews: 186+0,
       negativeReviews: 0,
     },
+
+    {
+      id: "10",
+      name: "Michael Tingate Snake Removal",
+      phone: "0409160151",
+      status: "24/7 Emergency",
+      postcodes: ["3342", "3341", "3345", "3340", "3460", "3458"],
+      positiveReviews: 0,
+      negativeReviews: 0,
+    },
   ]
 };
