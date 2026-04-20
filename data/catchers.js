@@ -148,5 +148,25 @@ export const CATCHERS_DATA = {
       positiveReviews: 5+4,
       negativeReviews: 0,
     },
+
+     {
+      id: "11",
+  name: "STEWY THE SNAKE CATCHER PTY LTD",
+  phone: "0413277588",
+  status: "24/7",
+  postcodes: ["3024", " 3030", "3029", "3000",
+     "3001", "3002", "3003", "3004", "3005", "3006",
+      "3008", "3011", "3012", "3013", "3015", "3016",
+       "3018", "3019", "3020", "3021", "3022", "3023",
+        "3024", "3025", "3026", "3027", "3028", "3029",
+         "3030", "3031", "3032", "3033", "3034", "3036",
+          "3037", "3038", "3039", "3040", "3041", "3042",
+           "3043", "3045", "3066", "3067", "3121", "3207",
+            "3211", "3212", "3335", "3337", "3338", "3340" ],
+   website: "http://www.stewythesnakecatcher.com.au",
+      facebook: "https://www.facebook.com/stewythesnakecatcher/",
+      positiveReviews: 31+11,
+      negativeReviews: 0,
+    },
   ]
 };
