@@ -30,6 +30,8 @@ import { stylesheet as styles } from "./styles/stylesheet";
 import FirstAidScreen from "./Sheets/FirstAidScreen";
 import SignupScreen from "./Sheets/SignupScreen";
 import MainScreen from "./Sheets/MainScreen";
+import InstallScreen from "./Sheets/InstallScreen";
+
 
 const APP_STORE_LINK = "";
 const PLAY_STORE_LINK = "";
@@ -56,6 +58,8 @@ export default function App() {
   const priorityIds = ["3"];
   const isWeb = Platform.OS === "web";
 
+  
+
   const withLoading = async (fn) => {
   try {
     setLoading(true);
@@ -64,6 +68,28 @@ export default function App() {
     setLoading(false);
   }
 };
+
+ /* =========================
+     SPLASH
+  ========================= */
+
+useEffect(() => {
+  setTimeout(() => {
+    setLoading(false);
+  }, 1500); // adjust timing if needed
+}, []);
+
+if (loading) {
+  return (
+    <View style={styles.splash}>
+      <Image
+        source={require("./assets/splash.png")}
+        style={styles.splashImage}
+        resizeMode="contain"
+      />
+    </View>
+  );
+}
 
   /* =========================
      ADSENSE
@@ -350,6 +376,10 @@ console.log("📍 DETECTED POSTCODE:", detectedPostcode);
     return <FirstAidScreen onBack={() => setScreen("home")} />;
   }
 
+  if (screen === "install") {
+  return <InstallScreen onBack={() => setScreen("home")} />;
+}
+
   /* =========================
      MAIN APP
   ========================= */
@@ -373,6 +403,7 @@ console.log("📍 DETECTED POSTCODE:", detectedPostcode);
   resetSearch={resetSearch}
   onSignup={() => setScreen("signup")}
   onFirstAid={() => setScreen("firstAid")}
+  onInstall={() => setScreen("install")}
   APP_STORE_LINK={APP_STORE_LINK}
   PLAY_STORE_LINK={PLAY_STORE_LINK}
 />

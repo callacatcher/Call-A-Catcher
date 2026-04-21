@@ -19,7 +19,6 @@ import { StatusBar } from "expo-status-bar";
 import ScreenFooter from "../components/ScreenFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { stylesheet as styles } from "../styles/stylesheet";
-import InstallAppButton from "../components/InstallAppButton";
 
 
 export default function MainScreen({
@@ -37,6 +36,7 @@ export default function MainScreen({
   pinned,
   togglePin,
   priorityIds,
+  onInstall,
   handlePostcodeChange,
   onSignup,
   onFirstAid,
@@ -269,7 +269,12 @@ contentContainerStyle={{ paddingBottom: 160 }}
           <Text style={styles.signupText}>Catcher Sign Up</Text>
         </TouchableOpacity>
 
-        <InstallAppButton style={styles.updateButton} />
+         <TouchableOpacity
+  style={styles.updateButton}
+  onPress={onInstall}
+>
+  <Text style={styles.updateButtonText}>Install App</Text>
+</TouchableOpacity>
 
       </View>
 

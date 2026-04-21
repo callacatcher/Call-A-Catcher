@@ -182,10 +182,12 @@ export const stylesheet = StyleSheet.create({
   },
 
   updateButton: {
-    backgroundColor: "#1565c0",
+    backgroundColor: "#1559c0",
     paddingVertical: 8,
-  paddingHorizontal: 14,
-    borderRadius: 8,
+  paddingHorizontal: 10,
+    borderRadius: 6,
+    marginTop: 0,
+    marginBottom: 0,
     alignItems: "center",
   },
 
