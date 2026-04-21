@@ -19,7 +19,7 @@ import { StatusBar } from "expo-status-bar";
 import ScreenFooter from "../components/ScreenFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { stylesheet as styles } from "../styles/stylesheet";
-import InstallAppButton from "./components/InstallAppButton";
+import InstallAppButton from "../components/InstallAppButton";
 
 
 export default function MainScreen({
