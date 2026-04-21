@@ -23,23 +23,22 @@
         "foregroundImage": "./assets/icon.png", 
        "resizeMode": "contain",
         "backgroundColor": "#ffffff"
+        
       },
       "edgeToEdgeEnabled": true,
       "package": "com.callacatcher.callacatcher"
     },
 
    "web": {
-  "favicon": "./assets/favicon.png",
+  "bundler": "metro",
+  "output": "single",
+  "favicon": "./assets/icon 2.png",
   "name": "Call a Catcher",
   "shortName": "Catchers",
   "display": "standalone",
-  "backgroundColor": "#ffffff",
-  "themeColor": "#000000",
-  "bundler": "metro",
-  "meta": {
-    "google-adsense-account": "ca-pub-3658953223794524",
-    "apple-mobile-web-app-capable": "yes"
-  }
+  "themeColor": "#1565c0",
+  "backgroundColor": "#ffffff"
+}
 },
 
     "extra": {
@@ -57,4 +56,3 @@
       "expo-web-browser"
     ]
   }
-}
