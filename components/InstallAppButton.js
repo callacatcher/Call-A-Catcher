@@ -9,7 +9,7 @@ export default function InstallAppButton({ style }) {
     if (Platform.OS !== "web") return;
     if (typeof window === "undefined") return;
 
-    // ✅ Detect if already installed
+    // ✅ Check if already installed
     const isStandalone =
       window.matchMedia?.("(display-mode: standalone)")?.matches ||
       window.navigator?.standalone === true;
@@ -19,7 +19,7 @@ export default function InstallAppButton({ style }) {
       return;
     }
 
-    // ✅ Listen for install prompt (Chrome / Edge)
+    // ✅ Capture install event (Chrome / Edge only)
     const handler = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
@@ -27,7 +27,7 @@ export default function InstallAppButton({ style }) {
 
     window.addEventListener("beforeinstallprompt", handler);
 
-    // ✅ Detect install completion
+    // ✅ Detect successful install
     const installedHandler = () => {
       setInstalled(true);
       setDeferredPrompt(null);
@@ -43,7 +43,7 @@ export default function InstallAppButton({ style }) {
 
   const handleInstall = async () => {
     if (!deferredPrompt) {
-      alert("Install not available yet. Try again after interacting with the page.");
+      alert("Install is not available yet. Open the app in Chrome and try again.");
       return;
     }
 
@@ -57,28 +57,27 @@ export default function InstallAppButton({ style }) {
     setDeferredPrompt(null);
   };
 
-  // ❌ Hide if already installed
+  // ❌ Hide completely if already installed
   if (installed) return null;
 
   return (
     <View style={{ alignItems: "center" }}>
 
-      {/* ✅ Chrome / Edge install button */}
-      {deferredPrompt && (
-        <TouchableOpacity
-          style={[styles.button, style]}
-          onPress={handleInstall}
-        >
-          <Text style={styles.text}>Install Call a Catcher</Text>
-        </TouchableOpacity>
-      )}
-
-      {/* ⏳ Waiting state */}
-      {!deferredPrompt && (
-        <Text style={styles.infoText}>
-          Install option will appear after interacting with the app
+      <TouchableOpacity
+        style={[
+          styles.button,
+          style,
+          !deferredPrompt && styles.disabled
+        ]}
+        onPress={handleInstall}
+        disabled={!deferredPrompt}
+      >
+        <Text style={styles.text}>
+          {deferredPrompt
+            ? "Install Call a Catcher"
+            : "Preparing Install..."}
         </Text>
-      )}
+      </TouchableOpacity>
 
     </View>
   );
@@ -87,19 +86,16 @@ export default function InstallAppButton({ style }) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#1565c0",
-    paddingVertical: 8,
-    paddingHorizontal: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
     borderRadius: 8,
     alignItems: "center",
+  },
+  disabled: {
+    opacity: 0.5,
   },
   text: {
     color: "white",
     fontWeight: "600",
-  },
-  infoText: {
-    fontSize: 12,
-    color: "#555",
-    textAlign: "center",
-    marginTop: 5,
   },
 });
