@@ -19,6 +19,7 @@ import { StatusBar } from "expo-status-bar";
 import ScreenFooter from "../components/ScreenFooter";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { stylesheet as styles } from "../styles/stylesheet";
+import InstallAppButton from "./components/InstallAppButton";
 
 
 export default function MainScreen({
@@ -268,26 +269,7 @@ contentContainerStyle={{ paddingBottom: 160 }}
           <Text style={styles.signupText}>Catcher Sign Up</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.updateButton}
-          onPress={() => {
-            const url =
-              Platform.OS === "ios"
-                ? APP_STORE_LINK
-                : PLAY_STORE_LINK;
-
-            if (!url) {
-              alert("        This button is currently unoperational. \n\n  This is for the future when we move to the app store. for now, the database updates anytime you open, and have internet connection. It works with no internet, Just fine, but the listing may be out of date depending on when you last visited us. :)\n\n  We Plan to be on Android, but to keep the app free for everyone, we cant afford to go on apple.");
-              return;
-            }
-
-            Linking.openURL(url);
-          }}
-        >
-          <Text style={styles.updateText}>
-            Update App (Update Listings)
-          </Text>
-        </TouchableOpacity>
+        <InstallAppButton style={styles.updateButton} />
 
       </View>
 
