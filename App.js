@@ -123,6 +123,11 @@ if (loading) {
     loadCatchers();
   }, []);
 
+  useEffect(() => {
+  const t = setTimeout(() => setShowSplash(false), 1500);
+  return () => clearTimeout(t);
+}, []);
+
   /* =========================
      PIN SYSTEM
   ========================= */
@@ -233,18 +238,21 @@ if (loading) {
      GPS
   ========================= */
   const useMyLocation = async () => {
-    setLoading(true);
+    console.log("📍 GPS BUTTON PRESSED");
+    console.log("📍 BEFORE LOADING TOGGLE");
 
     try {
       let { status } =
         await Location.requestForegroundPermissionsAsync();
-
-      if (status !== "granted") {
-        setError("Location permission denied");
-        return;
-      }
+console.log("📍 PERMISSION STATUS:", status);
+    if (status !== "granted") {
+  setError("Location permission denied");
+  setGpsLoading(false);
+  return;
+}
 
       let location = await Location.getCurrentPositionAsync({});
+     console.log("📍 RAW LOCATION:", location);
       const { latitude, longitude } = location.coords;
 
      const response = await fetch(
@@ -257,6 +265,7 @@ if (loading) {
 );
 
      const data = await response.json();
+     console.log("📍 REVERSE GEO DATA:", data);
 
 console.log("📍 RAW GPS RESPONSE:", data);
 
@@ -264,17 +273,19 @@ const detectedPostcode = data?.address?.postcode;
 
 console.log("📍 DETECTED POSTCODE:", detectedPostcode);
 
-      if (!detectedPostcode) {
-        setError("Could not detect postcode");
-        return;
-      }
+    if (!detectedPostcode) {
+  setError("Could not detect postcode");
+  setGpsLoading(false);
+  return;
+}
 
       setPostcode(detectedPostcode);
+      console.log("📍 FINAL POSTCODE:", detectedPostcode);
       await performSearch(detectedPostcode);
     } catch (err) {
       setError("GPS error, try manual postcode");
     } finally {
-      setLoading(false);
+      setGpsLoading(false);
     }
   };
 
