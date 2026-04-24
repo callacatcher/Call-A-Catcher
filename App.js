@@ -46,6 +46,7 @@ export default function App() {
 
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
+const [showSplash, setShowSplash] = useState(true);
 
   const [error, setError] = useState("");
   const [warning, setWarning] = useState("");

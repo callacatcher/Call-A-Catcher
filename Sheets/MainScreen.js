@@ -91,7 +91,7 @@ export default function MainScreen({
       <View style={styles.buttonRow}>
         <TouchableOpacity
           style={[styles.searchButton, { flex: 1 }]}
-          onPress={() => withLoading(search)}
+          onPress={search}
         >
           <Text style={styles.searchText}>
             {loading ? "Searching..." : "Find Catcher"}
@@ -161,8 +161,8 @@ export default function MainScreen({
     
 contentContainerStyle={{ paddingBottom: 160 }}
     keyExtractor={(item, index) =>
-      item?.id ? String(item.id) : `fallback-${index}`
-    }
+  item?.id ? String(item.id) : `fallback-${index}`
+}
 
     renderItem={({ item }) => {
       if (!item) return null;
