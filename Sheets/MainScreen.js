@@ -191,7 +191,7 @@ contentContainerStyle={{ paddingBottom: 160 }}
             <View style={{ flexDirection: "row", marginLeft: 10, gap: 12 }}>
               {item.positiveReviews > 0 && (
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                  <MaterialCommunityIcons name="thumb-up" size={18} color="#2e7d32" />
+                  <MaterialCommunityIcons name="thumb-up-outline" size={18} color="#2e7d32" />
                   <Text style={{ color: "#2e7d32", fontWeight: "600" }}>
                     {item.positiveReviews}
                   </Text>
@@ -200,7 +200,7 @@ contentContainerStyle={{ paddingBottom: 160 }}
 
               {item.negativeReviews > 0 && (
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                  <MaterialCommunityIcons name="thumb-down" size={18} color="#c62828" />
+                  <MaterialCommunityIcons name="thumb-down-outline" size={18} color="#c62828" />
                   <Text style={{ color: "#c62828", fontWeight: "600" }}>
                     {item.negativeReviews}
                   </Text>
