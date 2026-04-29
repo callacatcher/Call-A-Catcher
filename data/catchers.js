@@ -225,5 +225,65 @@ export const CATCHERS_DATA = {
   positiveReviews: 19,
   negativeReviews: 0,
 },
+
+{
+  id: "16",
+  name: "Lil Miss Snake Catcher",
+  phone: "0412720672",
+  status: "24/7 Emergency",
+  postcodes: [
+    "3431", "3429", "3435", "3437", "3438",
+    "3440", "3441", "3442", "3444", "3446",
+    "3450", "3458", "3467", "3428", "3427",
+    "3337", "3063", "3043"],
+  
+  facebook: "https://www.facebook.com/p/Lil-Miss-Snake-Catcher-100064539260654/",
+  positiveReviews: 0,
+  negativeReviews: 0,
+},
+
+{
+  id: "17",
+  name: "Tinks Snake Relocations",
+  phone: "0439244781",
+  status: "24/7 Emergency",
+  postcodes: [
+    "2319", "2324", "2300", "2302", "2293", "2304",
+    "2250", "2259", "2256", "2257", "2261", "2263",
+    "2252", "2260", "2321", "2420", "2415", "2318", "2423"],
+  facebook: "https://www.facebook.com/profile.php?id=61588687642657",
+  positiveReviews: 0,
+  negativeReviews: 0,
+},
+
+{
+  id: "18",
+  name: "Tilligerry reptile relocation services",
+  phone: "0426535505",
+  status: "24/7 Emergency",
+  postcodes: [
+    "2319", "2324", "2300", "2302", "2293", "2304",
+    "2250", "2259", "2256", "2257", "2261", "2263",
+    "2252", "2260", "2321", "2420", "2415", "2318", "2423"],
+  facebook: "https://www.facebook.com/profile.php?id=61554375746823",
+  positiveReviews: 3+0,
+  negativeReviews: 0,
+},
+
+{
+  id: "19",
+  name: "Medusa Snake Catcher",
+  phone: "0427775959",
+  status: "24/7 Emergency",
+  postcodes: [
+    "2147", "2148", "2763", "2761", "2770", "2760",
+     "2762", "2765", "2768", "2155", "2750", "2747",
+      "2749", "2759", "2756", "2753", "2775", "2758",
+       "2774", "2780", "2170", "2171"],
+  website: "https://medusasydney.com.au/",
+  facebook: "https://www.facebook.com/medusasnakecatcher",
+  positiveReviews: 4+30,
+  negativeReviews: 0,
+},
   ]
 };
