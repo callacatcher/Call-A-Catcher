@@ -309,5 +309,19 @@ export const CATCHERS_DATA = {
   positiveReviews: 0,
   negativeReviews: 0,
 },
+
+{
+      id: "22",
+      name: "Barossa Reptile Service",
+     phone: "0410571931",
+     status: "24hr Availablity",
+      postcodes: ["5114", "5115", "5118", "5231", "5350",
+         "5351", "5352", "5355", "5360", "5371", "5372",
+          "5373", "5400"],
+      website: "https://www.barossareptileservice.com",
+      facebook: "https://www.facebook.com/barossareptileservice",
+      positiveReviews: 31+30,
+      negativeReviews: 0,
+    },
   ]
 };
