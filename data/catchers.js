@@ -1,5 +1,5 @@
 export const CATCHERS_DATA = {
-  version: "65474867584",
+  version: "8734574867584",
   data: [
     
     {
@@ -283,6 +283,19 @@ export const CATCHERS_DATA = {
   website: "https://medusasydney.com.au/",
   facebook: "https://www.facebook.com/medusasnakecatcher",
   positiveReviews: 4+30,
+  negativeReviews: 0,
+},
+
+{
+  id: "20",
+  name: "Jeremys reptile relocations townsville",
+  phone: "0403187712",
+  status: "24/7 Emergency",
+  postcodes: [
+    "4810", "4811", "4812", "4814","4816", "4818"],
+  website: "https://snakecatchertownsville.com.au/",
+  facebook: "https://www.facebook.com/share/1LMzSdQzuc/?mibextid=wwXIfr",
+  positiveReviews: 0,
   negativeReviews: 0,
 },
   ]

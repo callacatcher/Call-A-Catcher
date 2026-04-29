@@ -38,6 +38,8 @@ export default function SignupScreen({ onBack }) {
   phone: "0000000000",
   status: "24hr Emergency, 9-5 etc",
   postcodes: ["0000", "0001", "0002"],
+  website: "https://www.abcetc",
+  facebook: "https://www.facebook.com/abcetc",
 }`;
           await Clipboard.setStringAsync(text);
           alert("Copied to clipboard");
