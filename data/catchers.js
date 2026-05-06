@@ -324,12 +324,23 @@ export const CATCHERS_DATA = {
       id: "23",
       name: "Snake snatchers adelaide hills",
   phone: "0416144392",
-  status: "24hr Emergency, all areas of the Adelaide Hills",
+  status: "24hr Emergency",
   postcodes: ["5155", "5152", "5154", "5153", "5245", "5144", 
     "5142", " 5201", "5242", "5244", " 5064"],
       positiveReviews: 2+6,
       negativeReviews: 0,
       facebook: "https://www.facebook.com/profile.php?id=100089843018680",
     },
+{
+      id: "24",
+      name: "Trayhurn's Reptile Relocation",
+  phone: "0478841226",
+  status: "24hr Emergency",
+  postcodes: ["2787", "2795,"],
+      positiveReviews: 0,
+      negativeReviews: 0,
+      facebook: "https://www.facebook.com/profile.php?id=61588644272225",
+    },
+    
   ]
 };
