@@ -319,5 +319,16 @@ export const CATCHERS_DATA = {
       positiveReviews: 31+30,
       negativeReviews: 0,
     },
+
+    {
+      id: "23",
+      name: "Snake snatchers adelaide hills",
+  phone: "0416144392",
+  status: "24hr Emergency, all areas of the Adelaide Hills",
+  postcodes: ["5155", "5152", "5154", "5153", "5245", "5144", 
+    "5142", " 5201", "5242", "5244", " 5064"],
+      positiveReviews: 31+30,
+      negativeReviews: 0,
+    },
   ]
 };
