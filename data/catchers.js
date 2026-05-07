@@ -1,5 +1,5 @@
 export const CATCHERS_DATA = {
-  version: "3247584657456345",
+  version: "76456345",
   data: [
     
     {
@@ -365,5 +365,32 @@ export const CATCHERS_DATA = {
        website: "www.narellansnakecatcher.com.au",
       facebook: "https://www.facebook.com/share/1Dm7dUea8F/",
     },
+
+    {
+       name: "Australian Snake Catchers", 
+      phone: "0410761575",
+      status: "24 hr Emergency", 
+    postcodes: ["2975", "2774", "2750", "2000", "2777", 
+      "2753", "2756", "2790", "2774", "2148", "2752",
+      "2787", "2799", "2756", "2780", "2753", "2745", 
+      "2170", "2150", "2800", "2850"],
+      positiveReviews: 418,
+      negativeReviews: 9,
+      facebook: "https://www.facebook.com/share/1AyvXBgZyy/ ", 
+    },
+
+    {
+  name: "southernhighlands & south coast snake catchers", 
+  phone: "0400734225",
+  status: "24hr Emergency",
+  postcodes: [ "2577", "2570", "2580",  "2575", "2576",
+     "2577", "2578", "2571", "2535", "2536", "2538",
+     "2539", "2540", "2541", "2577", "2622", "2580", 
+    "2541"],
+    positiveReviews: 12 + 7,
+      negativeReviews: 0,
+  website: "https://www.southernhighlandssnakecatchers.com.au",
+facebook: "https://www.facebook.com/share/17rrVZMyzy/?mibextid=wwXIfr",
+  },
   ]
 };
