@@ -172,7 +172,7 @@ if (loading) {
       const diffDays =
         (new Date() - new Date(last)) / (1000 * 60 * 60 * 24);
 
-      if (diffDays >= 30) setShowNotice(true);
+      if (diffDays >= 10) setShowNotice(true);
     };
 
     checkNotice();
@@ -348,15 +348,39 @@ console.log("📍 DETECTED POSTCODE:", detectedPostcode);
      NOTICE SCREEN
   ========================= */
   if (showNotice) {
-    return (
-      <View style={styles.container}>
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 20,
+        },
+      ]}
+    >
+      <View
+        style={{
+          width: "100%",
+          maxWidth: 420,
+          backgroundColor: "#fff",
+          padding: 20,
+          borderRadius: 12,
+          alignItems: "center",
+        }}
+      >
         <Text style={styles.title}>Important Notice</Text>
 
-        <Text style={styles.noticeText}>
-          Welcome to Call-A-Catcher. This is a
-          Reminder to Check the location you
-          are travelling to if remote, before
-          you leave incase there is no Internet
+        <Text
+          style={[
+            styles.noticeText,
+            { textAlign: "center", marginTop: 10 },
+          ]}
+        >
+          Welcome to Call-A-Catcher. This is a reminder to check the
+          location you are travelling to if remote, before you leave in
+          case there is no internet.
         </Text>
 
         <TouchableOpacity
@@ -374,9 +398,9 @@ console.log("📍 DETECTED POSTCODE:", detectedPostcode);
 
         <AppFooter />
       </View>
-    );
-  }
-
+    </View>
+  );
+}
   /* =========================
      ROUTES
   ========================= */
