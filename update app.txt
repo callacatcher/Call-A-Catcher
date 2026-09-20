@@ -1,0 +1,9 @@
+cd “E:\MY DOCS\wildlife-rescue-Australia”
+cd "E:\MY DOCS\call-a-catcher"
+git add -A
+git commit -m "web production build"
+git push origin main
+npx vercel --prod
+
+npx expo start
+
